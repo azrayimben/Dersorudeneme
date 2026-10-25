@@ -763,13 +763,16 @@
             }
 
             const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+            const isBrave = !!(navigator.brave && typeof navigator.brave.isBrave === "function");
             const isSecure = location.protocol === "https:" || location.hostname === "localhost";
             if (!isSecure) {
-                alert("Ana ekrana ekleme için siteyi HTTPS destekleyen bir adreste (ör. GitHub Pages) açmalısın. ZIP dosyasını doğrudan açmak uygulama kurulumu için yeterli değildir.");
+                alert("Ana ekrana eklemek için siteyi HTTPS üzerinden açmalısın. GitHub Pages adresin HTTPS destekler; ZIP dosyasını doğrudan açmak uygulama kurulumu için yeterli değildir.");
             } else if (isIOS) {
-                alert("Senin Kısa Yol'u ana ekrana eklemek için:\n\n1. Safari'de bu siteyi aç.\n2. Paylaş simgesine dokun.\n3. 'Ana Ekrana Ekle' seçeneğini seç.");
+                alert("Senin Kısa Yol'u ana ekrana eklemek için:\\n\\n1. Safari'de bu siteyi aç.\\n2. Paylaş simgesine dokun.\\n3. 'Ana Ekrana Ekle' seçeneğini seç.");
+            } else if (isBrave) {
+                alert("Brave'de kurulum penceresi otomatik açılamıyorsa şu adımları izle:\\n\\n1. Bu uyarıyı kapat.\\n2. Sağ üstteki ⋮ menüsüne dokun.\\n3. 'Ana ekrana ekle' veya 'Uygulamayı yükle' seçeneğini seç.\\n4. 'Ekle' / 'Yükle' diyerek onayla.\\n\\nBu seçenek görünmüyorsa aynı GitHub Pages adresini Chrome'da açıp menüden tekrar dene.");
             } else {
-                alert("Senin Kısa Yol'u ana ekrana eklemek için:\n\n1. Siteyi Chrome'da aç.\n2. Sağ üstteki ⋮ menüsüne dokun.\n3. 'Uygulamayı yükle' veya 'Ana ekrana ekle' seçeneğini seç.\n\nKurulum seçeneği görünmüyorsa sitenin HTTPS üzerinden yayınlandığını kontrol et.");
+                alert("Senin Kısa Yol'u ana ekrana eklemek için:\\n\\n1. Sağ üstteki ⋮ menüsünü aç.\\n2. 'Uygulamayı yükle' veya 'Ana ekrana ekle' seçeneğini seç.\\n3. Ekleme isteğini onayla.\\n\\nKurulum seçeneği görünmüyorsa sayfayı yenile ve sitenin HTTPS üzerinden açıldığını kontrol et.");
             }
         });
 
